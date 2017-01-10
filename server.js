@@ -18,10 +18,6 @@ app.use((req, res, next) => {
 
 app.use(express.static(__dirname + '/public'));
 
-app.use((req, res, next) => {
-	res.render('maintenance.hbs')
-})
-
 
 hbs.registerPartials(__dirname + '/views/partials')
 hbs.registerHelper('getCurrentYear', () => {
@@ -30,8 +26,6 @@ hbs.registerHelper('getCurrentYear', () => {
 hbs.registerHelper('screamIt', (text) => {
 	return text.toUpperCase();
 })
-
-
 
 app.get('/', (req, res) => {
 	res.render('home.hbs', {
@@ -49,6 +43,12 @@ app.get('/about', (req, res) => {
 app.get('/bad', (req, res) => {
 	res.send({
 		errorMessage: 'Unable to handle request'
+	})
+})
+
+app.get('/projects', (req, res) => {
+	res.render('projects.hbs', {
+		pageTitle: 'Projects Page'
 	})
 })
 
